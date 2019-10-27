@@ -55,12 +55,12 @@
     }
     .map-segue-button {
         margin: 32px 8px 0;
-        background: #FF4F4F;
         color: white;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
         border-radius: 30px;
         width: 90%;
         cursor: pointer;
+        background: #4066FF;
     }
 </style>
 

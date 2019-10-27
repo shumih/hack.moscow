@@ -8,13 +8,28 @@
 
     let isExpanded = false;
 
-    function formattedIncome(income) {
-        return String(politician.income).replace(/\d(?=(\d{3})+\.)/g, '$& ');
+    function formattedIncome(incomes) {
+        debugger
+        return incomes.length;
+        // return String(politician.income).replace(/\d(?=(\d{3})+\.)/g, '$& ');
+    }
+
+    function formattedVehicles(vehicles) {
+      debugger
+      return vehicles.length;
+
+    }
+
+    function formattedRealstates(realstates) {
+        debugger;
+        return realstates.length
     }
 
     function toggleCard() {
         isExpanded = !isExpanded;
     }
+
+    id, name, incomes, realstates, vehicles
 </script>
 
 <style>
@@ -81,15 +96,15 @@
                 <div class="brief-info">
                     <div class="brief-info-fact">
                         <span class="brief-info-fact-label">Доход</span>
-                        <span class="brief-info-fact-value">{formattedIncome(politician.income)}</span>
+                        <span class="brief-info-fact-value">{formattedIncome(politician.incomes)}</span>
                     </div>
                     <div class="brief-info-fact">
                         <span class="brief-info-fact-label">Недвижимость</span>
-                        <span class="brief-info-fact-value">{politician.totalRealEstate}</span>
+                        <span class="brief-info-fact-value">{formattedRealstates(politician.realstates)}</span>
                     </div>
                     <div class="brief-info-fact">
                         <span class="brief-info-fact-label">Транспорт</span>
-                        <span class="brief-info-fact-value">{politician.vehicles.length}шт</span>
+                        <span class="brief-info-fact-value">{formattedVehicles(politician.vehicles)}шт</span>
                     </div>
                 </div>
             </div>

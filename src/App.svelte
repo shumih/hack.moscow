@@ -121,7 +121,8 @@
 	}
 	.content {
 		grid-area: content;
-		padding: 8px;
+		padding: 8px 24px;
+		background: #f7f7ff;
 	}
 
 
