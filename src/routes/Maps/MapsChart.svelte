@@ -43,6 +43,9 @@
 
   let chartEl;
   let chartEl1;
+  let chartEl2;
+  let chartEl3;
+
 
   afterUpdate(() => {
     console.log(data);
@@ -123,6 +126,84 @@
         }
       }
     });
+
+     const myChart2 = new Chart(chartEl2, {
+      type: "line",
+      data: {
+        labels:  ["2015", "2016", "2017", "2018"],
+        datasets: [
+          {
+            label: "",
+            data: [834596, ...Object.values(relative), 1834596],
+            backgroundColor: [
+              "rgba(54, 162, 235, 0.2)",
+              "rgba(255, 206, 86, 0.2)",
+              "rgba(75, 192, 192, 0.2)",
+              "rgba(153, 102, 255, 0.2)",
+              "rgba(255, 159, 64, 0.2)"
+            ],
+            borderColor: [
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)",
+              "rgba(255, 159, 64, 1)"
+            ],
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true
+              }
+            }
+          ]
+        }
+      }
+    });
+
+     const myChart3 = new Chart(chartEl3, {
+      type: "line",
+      data: {
+        labels:  ["2015", "2016", "2017", "2018"],
+        datasets: [
+          {
+            label: "",
+            data: [1834596, ...Object.values(relative), 834596],
+            backgroundColor: [
+              "rgba(54, 162, 235, 0.2)",
+              "rgba(255, 206, 86, 0.2)",
+              "rgba(75, 192, 192, 0.2)",
+              "rgba(153, 102, 255, 0.2)",
+              "rgba(255, 159, 64, 0.2)"
+            ],
+            borderColor: [
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)",
+              "rgba(255, 159, 64, 1)"
+            ],
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true
+              }
+            }
+          ]
+        }
+      }
+    });
   });
 </script>
 
@@ -144,17 +225,18 @@
     display: flex;
     color: #8b8b8b;
     align-items: center;
+    font-size: 18px;
   }
   .content {
     padding: 24px;
     border-radius: 32px;
     background-color: white;
     width: 100%;
-    height: 700px;
     box-sizing: border-box;
+    margin-bottom: 40px;
   }
   h1 {
-    font-size: 14px;
+    font-size: 18px;
     text-align: center;
   }
 </style>
@@ -176,3 +258,19 @@
   </div>
 </div>
 
+<div class="content">
+  <div class="header">
+    <div class="chart"></div>
+    <div>Статистика региона Москва</div>
+  </div>
+  <div class="container">
+    <div>
+      <h1>Доходы чиновников мужчин</h1>
+      <canvas bind:this={chartEl2} id="myChart2" width="100%" ></canvas>
+    </div>
+    <div>
+      <h1>Доходы чиновников женщин</h1>
+      <canvas bind:this={chartEl3} id="myChart3" width="100%"></canvas>
+    </div>
+  </div>
+</div>
