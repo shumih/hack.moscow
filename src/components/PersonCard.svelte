@@ -9,20 +9,16 @@
     let isExpanded = false;
 
     function formattedIncome(incomes) {
-        debugger
-        return incomes.length;
-        // return String(politician.income).replace(/\d(?=(\d{3})+\.)/g, '$& ');
+        return String(incomes.reduce((result, i) => result + i.year_income, 0)).replace(/\d(?=(\d{3})+\.)/g, '$& ');
     }
 
     function formattedVehicles(vehicles) {
-      debugger
-      return vehicles.length;
+      return Math.max(...vehicles.map(v => v.year_vehicles_count, 0));s
 
     }
 
     function formattedRealstates(realstates) {
-        debugger;
-        return realstates.length
+        return Math.max(...realstates.map(v => v.year_realestate, 0));s
     }
 
     function toggleCard() {
@@ -32,8 +28,6 @@
     function getAvatar(id) {
       return `http://localhost:5151/api/avatar/${id}`
     }
-
-    id, name, incomes, realstates, vehicles
 </script>
 
 <style>
@@ -118,7 +112,8 @@
             </Button>
 
             {#if isExpanded}
-
+                <span class="details-info-item-label">Декларация, статус, учреждение</span>
+                 <span class="details-info-item-value">Декларация, статус, учреждение Председатель комитета, член комитета Законодательного Собрания Владимирской области</span>
             {/if}
         </Content>
     </Card>

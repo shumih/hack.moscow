@@ -1,5 +1,5 @@
 <script>
-  import {onMount, onDestroy} from 'svelte';
+  import {onDestroy} from 'svelte';
   import {selectedFilters, availableFilters} from '../storage';
   import Button from '@smui/button/Button.svelte';
   import PoliticiansCardList from '../components/PoliticiansRowList.svelte';
