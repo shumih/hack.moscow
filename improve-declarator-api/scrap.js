@@ -4,31 +4,23 @@ const http = require('request-promise');
 let _browser;
 let pageMap = new Map();
 
-async function getIds(length = 132893) {
+async function getPoliticians(length = 100) {
   const toReturn = [];
   let page = await getHtmlPageOf(`https://declarator.org/person`);
   let olElement = await page.$('.persons_list > ol');
   let anchorElements = await olElement.$$('li > a');
   const recordsPerPage = anchorElements.length;
 
-  await parseElements(anchorElements);
-
   const pages = await Promise.all(
     Array.from({ length: Math.ceil(recordsPerPage / length) }).map((_, i) =>
-      getHtmlPageOf(`https://declarator.org/person?page=${i + 1}`)
+      getHtmlPageOf(`https://declarator.org/person?page=${i}`)
     )
   );
   const olElements = await Promise.all(pages.map(page => page.$('.persons_list > ol')));
   const arraysOfLiElements = await Promise.all(olElements.map(olElement => olElement.$$('li > a')));
-
   for (let liElements of arraysOfLiElements) {
-    console.log(Math.ceil(recordsPerPage / length));
-
-    try {
-      await parseElements(liElements);
-    } catch (e) {
-      console.log(e);
-    }
+    console.count('request');
+    await parseElements(liElements.slice(0, Math.min(length, arraysOfLiElements.length) / 10));
   }
 
   return toReturn;
@@ -43,14 +35,18 @@ async function getIds(length = 132893) {
         const textContentProp = await el.getProperty('textContent');
         const name = await textContentProp.jsonValue();
 
-        const [{ results: incomes }, { results: realstates }, { results: vehicles }] = await Promise.all([
-          http.get(`https://declarator.org/api/get-year-income/${id}`).json(),
-          http.get(`https://declarator.org/api/get-year-realestate/${id}`).json(),
-          http.get(`https://declarator.org/api/get-year-vehicles-count/${id}`).json(),
-        ]);
+        try {
+          const [{ results: incomes }, { results: realstates }, { results: vehicles }] = await Promise.all([
+            http.get(`https://declarator.org/api/get-year-income/${id}`).json(),
+            http.get(`https://declarator.org/api/get-year-realestate/${id}`).json(),
+            http.get(`https://declarator.org/api/get-year-vehicles-count/${id}`).json(),
+          ]);
 
-        console.count('get-year-income');
-        toReturn.push({ id, name, incomes, realstates, vehicles });
+          console.count('get-year-income');
+          toReturn.push({ id, name, incomes, realstates, vehicles });
+        } catch (e) {
+          console.log(e);
+        }
       }
     }
   }
@@ -96,4 +92,4 @@ async function getImage(htmlPage) {
   return page.buffer();
 }
 
-module.exports = { getAvatar, getIds };
+module.exports = { getAvatar, getPoliticians };

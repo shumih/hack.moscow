@@ -29,6 +29,10 @@
         isExpanded = !isExpanded;
     }
 
+    function getAvatar(id) {
+      return `http://localhost:5151/api/avatar/${id}`
+    }
+
     id, name, incomes, realstates, vehicles
 </script>
 

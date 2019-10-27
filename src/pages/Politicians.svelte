@@ -12,11 +12,11 @@
   });
   const unsubscribe = selectedFilters.subscribe(async selected => {
     const response = await getAllPersons();
-    politicians = await response.json();
+    politicians = response.data;
   });
 
   function getAllPersons() {
-    return fetch(`http://172.31.16.158:8080/allPersons?filters=${selected => selected.map(s => s.id).join(',')}`);
+    return fetch(`http://localhost:5151/api/politicians?limit=50`).then(res => res.json());
   }
 
   function toggleFilterSelection({ detail }) {
