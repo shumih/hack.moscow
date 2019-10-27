@@ -1,0 +1,18 @@
+@import "@material/typography/mdc-typography";
+
+:root {
+  --text-black: #313131;
+  --text-grey: #A9A9A9;
+  --text-header-size: 16px;
+  --mdc-theme-primary: #313131;
+}
+
+.container {
+  padding: 30px;
+}
+
+:global(.mdc-select) {
+  .mdc-slider__track-container {
+    height: 4px;
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "declarator",
+  "version": "1.0.0",
+  "devDependencies": {
+    "node-sass": "^4.13.0",
+    "prettier": "^1.18.2",
+    "rollup": "^1.12.0",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-copy": "^3.1.0",
+    "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-svelte": "^5.0.3",
+    "rollup-plugin-terser": "^5.1.2",
+    "svelte": "^3.0.0",
+    "svelte-material-ui": "^1.0.0-beta.15"
+  },
+  "dependencies": {
+    "@material/typography": "^3.1.0",
+    "beame-insta-ssl": "^1.1.25",
+    "chart.js": "^2.9.0",
+    "chartjs": "^0.3.24",
+    "rollup-plugin-postcss": "^2.0.3",
+    "sirv-cli": "^0.4.4",
+    "svelte-routing": "^1.4.0"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "sirv public --single",
+    "start:dev": "sirv public --single --dev"
+  }
+}
